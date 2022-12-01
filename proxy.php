@@ -1,7 +1,7 @@
 <?php
 
 // Define your HTTP API server (domain only) here
-define('TARGET_HOST', "www.example.com");
+define('TARGET_HOST', "www.dw.com");
 // Define your HTTP API server (port only) here
 define('TARGET_PORT', "443");
 // Choose HTTP or HTTPS
@@ -44,13 +44,13 @@ if ($request_method === 'POST') {
 // HTTP headers
 $request_content_type = $_SERVER["CONTENT_TYPE"];
 curl_setopt($session, CURLOPT_HTTPHEADER, array("Content-Type: $request_content_type"));
-if ( $_SERVER['PHP_AUTH_USER'] ) {
+if (isset($_SERVER['PHP_AUTH_USER'])) {
     curl_setopt($session, CURLOPT_USERPWD, $_SERVER['PHP_AUTH_USER'].":".$_SERVER['PHP_AUTH_PW']);
 }
 curl_setopt($session, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($session, CURLOPT_SSL_VERIFYPEER, 1);
-curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 1);
+curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($session, CURLOPT_HEADER, true);
 
 // Here we pass our request cookies to curl's request
