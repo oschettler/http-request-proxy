@@ -21,6 +21,7 @@ function starts_with($string, $query) {
 // First we reconstruct the request URI as following:
 // https://www.mysite.com/api/get_products?filter=1 => https://www.example.com/api/get_products?filter=1
 $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+$parsed_url['path'] = substr($parsed_url['path'], strlen($_SERVER['SCRIPT_NAME']));
 $parsed_url['host'] = TARGET_HOST;
 $parsed_url['port'] = TARGET_PORT;
 $parsed_url['scheme'] = TARGET_SCHEME;
